@@ -46,11 +46,16 @@ var styles = StyleSheet.create({
 	},
 	button:{
 		flex:1,
+		borderWidth:1,
 	},
 	MainArea:{
 		top:40,
 		borderWidth:5,
 		height:this.windowDimension.height - 100,
+		width: this.windowDimension.width,
+	},
+	ButtonArea:{
+		flexDirection: 'row',
 		width: this.windowDimension.width,
 	},
 	mapStyle:{
@@ -62,27 +67,53 @@ var styles = StyleSheet.create({
 class WhereToEat extends React.Component{
 	constructor() {
 		super();
-		this.state = {restaurant: null};	
+		let localRestaurants = [
+			{name: 'Little Korean Resturant', vicinity: 'on West Pender Street'},
+			{name: 'Big Korean Restaurant', vicinity: 'Don\' Remember'},
+			{name: '丼屋', vicinity: 'on Symore?'},
+			{name: 'little Japanese Resturant', vicinity: 'near little korean resturant'},
+			{name: 'Café 365', vicinity: 'near our company'},
+			{name: 'Noodle box', vicinity: 'Beanworks Friday place'},
+			{name: 'shogun', vicinity: 'Howe'},
+			{name: 'A & W', vicinity: 'some where near Georgia Street'},
+			{name: 'VCC', vicinity: 'Comdata VCC'},
+			{name: 'Throw Coin to Decide', vicinity: 'I am really tired of deciding where to eat for you guys, come on !'}
+		];
+		this.state = {restaurant: null, localRestaurants, state: 'Nothing'};	
+		console.log(this.state.localRestaurants);
 	}
 	
 	render() {
 		return (
 				<View style={{ flex:1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF', }}>
-				<MainArea restaurant={this.state.restaurant}/>
-				<ButtonArea func1={this.findWhereToEat.bind(this)}/>
+				<MainArea restaurant={this.state.restaurant} programState={this.state.state}/>
+				<ButtonArea 
+				func1={this.findWhereToEat.bind(this)}
+				func2={this.chooseRestaurantInVancouverDowntown.bind(this)}
+				/>
 				</View>
 			   );
 	}
 
+	setStatus (state='Nothing') {
+		this.setState({state});
+	}
+
+	chooseRestaurantInVancouverDowntown() {
+		this.setStatus('Choosing Restaurant for you in Downtown Vancouver');
+		this.setState({restaurant: _.sample(this.state.localRestaurants)});
+		this.setStatus();	
+	}
+
 	findWhereToEat() {
 		console.log('clicked');
+		this.setStatus('you just clicked a button');
 		this.getGeolocation();
 	}
 
 	async getGeolocation() {
-		console.log('getting geo location');
+		this.setStatus('Getting GEO location ...');
 		console.log(navigator.geolocation.getCurrentPosition);
-		navigator.geolocation.getCurrentPosition(function(data){console.log(data)}, function(error){console.log(error)});
 		navigator.geolocation.getCurrentPosition(
 				(position) => {
 					userCoords = position.coords;
@@ -95,17 +126,17 @@ class WhereToEat extends React.Component{
 					};
 					this.numOfCalls = 1;
 					this.results = {};
-					console.log('about to fetch data from google');
+					this.setStatus('About to fetch data from Alphbet(Google)');
 					this.fetchDataFromGoogle(queryparams);
-					console.log("Finished");
-				},
+					this.setStatus("Waiting for you to click again");
+				}.bind(this),
 				(error) => console.log('Error' + error),
-				{enableHighAccuracy: false, timeout: 20000, maximumAge: 1000}
+				{enableHighAccuracy: false, timeout: 2000, maximumAge: 1000}
 				);
 	}
 
 	async fetchDataFromGoogle(queryParams) {
-		console.log('Fetching');
+		this.setStatus('Waiting for Google API ...');
 		const baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 		var queryURI = baseUrl + Object.keys(queryParams).map((key)=>{
 						return encodeURIComponent(key) + '=' + encodeURIComponent(queryParams[key]);
@@ -116,7 +147,8 @@ class WhereToEat extends React.Component{
 			let result = JSON.parse(response._bodyText).results;
 			let key = queryParams['key'];
 			console.log(result);
-			this.setState({restaurant: _.sample(result)});
+			this.setStatus('Got Data');
+			this.setState({restaurants: result, restaurant: _.sample(result)});
 		} catch(error) {
 			console.log('error');
 			console.log(error);
@@ -128,8 +160,11 @@ class ButtonArea extends React.Component{
 
 	render() { 
 		return(
-				<View style={{ flexDirection: "column",}}>
+				<View 
+				style={ styles.ButtonArea}	
+				>
 					<Button onPress={this.props.func1}> Tell me where to eat NOW! </Button>	
+					<Button onPress={this.props.func2}> I work near Vancouver Downtown</Button>	
 				</View>
 				)
 	}
@@ -141,7 +176,7 @@ class Button extends React.Component{
 		return(
 				<View style={styles.button}>
 					<TouchableOpacity onPress={this.props.onPress}>
-						<Text style={styles.buttonText}>
+						<Text style={styles.buttonText} numberOfLines={2}>
 						{this.props.children}
 						</Text>
 					</TouchableOpacity>
@@ -157,6 +192,9 @@ class MainArea extends React.Component{
 		if (_.isNull(this.props.restaurant)){
 		return(
 			<View style={styles.MainArea}>
+				<Text>
+					Program is doing : {this.props.programState}
+				</Text>
 				<Text>
 					Click Button to Randomly select a restaurant {'\n'}
 				</Text>
@@ -184,6 +222,9 @@ class MainArea extends React.Component{
 //				/>
 		return (
 			<View style={styles.MainArea}>
+				<Text>
+					Program is doing : {this.props.programState}
+				</Text>
 				<Text style={{textAlign: 'center',
 							fontWeight: 'bold',
 							fontSize: 18
@@ -191,7 +232,7 @@ class MainArea extends React.Component{
 					{this.props.restaurant.name}
 				</Text>
 				<Text style={{textAlign: 'center',
-							contSize:15
+							fontSize:15
 					
 					}}> 
 					{this.props.restaurant.vicinity}
@@ -199,10 +240,6 @@ class MainArea extends React.Component{
 			</View>
 			)
 		}
-	}
-
-	calcDistance(UserCoords, destinationCoords) {
-	
 	}
 
 }
