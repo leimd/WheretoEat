@@ -4,14 +4,9 @@
  */
 'use strict';
 
-import Swiper from 'react-native-swiper';
-import React from 'react-native';
-import ActionButton from 'react-native-action-button';
-import _ from 'underscore';
-import './styleSheet';
-
-console.log(styles);
-
+var React = require('react-native');
+var Dimensions = require('Dimensions');
+var _ = require('underscore');
 var {
 	AppRegistry,
 	StyleSheet,
@@ -19,64 +14,84 @@ var {
 	View,
 	TouchableOpacity, 
 	MapView,
-	Image,
 } = React;
 
+this.windowDimension = Dimensions.get('window');	
 var userCoords = null;
+var styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		backgroundColor: '#F5FCFF',
+		borderWidth: 1,
+
+	},
+	welcome: {
+		fontSize: 20,
+		textAlign: 'center',
+		margin: 10,
+	},
+	instructions: {
+		textAlign: 'center',
+		color: '#333333',
+		marginBottom: 5,
+	},
+	buttonText:{
+		backgroundColor: '#2DB2DB',
+		fontFamily: '.HelveticaNeueInterface-MediumP4',
+		fontSize: 17,
+		fontWeight: 'bold',
+		textAlign: 'center',
+		height:75,
+	},
+	button:{
+		flex:1,
+		borderWidth:1,
+	},
+	MainArea:{
+		top:40,
+		borderWidth:5,
+		height:this.windowDimension.height - 100,
+		width: this.windowDimension.width,
+	},
+	ButtonArea:{
+		flexDirection: 'row',
+		width: this.windowDimension.width,
+	},
+	mapStyle:{
+		height: this.windowDimension.height - 200,
+		width: this.windowDimension.width,
+	}
+});
 
 class WhereToEat extends React.Component{
 	constructor() {
 		super();
 		let localRestaurants = [
-			{name: 'Little Korean Resturant', vicinity: 'on West Pender Street'
-				,picUri: require('./localFixture/01-littleKorean.png')
-			},
-			{name: 'Big Korean Restaurant', vicinity: 'Don\' Remember'
-				,picUri: require('./localFixture/noodleBox.jpg')
-			},
-			{name: '丼屋', vicinity: 'on Symore?'
-				,picUri: require('./localFixture/03-donPlace.png')
-			},
-			{name: 'little Japanese Resturant', vicinity: 'near little korean resturant'
-				,picUri: require('./localFixture/04-littleJapanese.png')
-			},
-			{name: 'Café 365', vicinity: 'near our Beanworks'
-				,picUri: require('./localFixture/05-cafe335.png')
-			},
-			{name: 'Noodle box', vicinity: 'Beanworks Friday place'
-				,picUri: require('./localFixture/noodleBox.jpg')
-			},
-			{name: 'shogun', vicinity: 'Howe'
-				,picUri: require('./localFixture/noodleBox.jpg')
-			},
-			{name: 'A & W', vicinity: 'some where near Georgia Street'
-				,picUri: require('./localFixture/08-aw.jpeg')
-			},
-			{name: 'VCC', vicinity: 'Comdata VCC'
-				,picUri: require('./localFixture/09-vcc.jpeg')
-			},
-			{name: 'Throw Coin to Decide', vicinity: 'I am really tired of deciding where to eat for you guys, come on !'
-				,picUri: require('./localFixture/furstratedFace.png')
-			}
+			{name: 'Little Korean Resturant', vicinity: 'on West Pender Street'},
+			{name: 'Big Korean Restaurant', vicinity: 'Don\' Remember'},
+			{name: '丼屋', vicinity: 'on Symore?'},
+			{name: 'little Japanese Resturant', vicinity: 'near little korean resturant'},
+			{name: 'Café 365', vicinity: 'near our company'},
+			{name: 'Noodle box', vicinity: 'Beanworks Friday place'},
+			{name: 'shogun', vicinity: 'Howe'},
+			{name: 'A & W', vicinity: 'some where near Georgia Street'},
+			{name: 'VCC', vicinity: 'Comdata VCC'},
+			{name: 'Throw Coin to Decide', vicinity: 'I am really tired of deciding where to eat for you guys, come on !'}
 		];
-		this.state = {restaurant: null,
-		   	localRestaurants, 
-			state: 'Hit + to see Menu',
-			started: false,
-			};	
+		this.state = {restaurant: null, localRestaurants, state: 'Nothing'};	
 		console.log(this.state.localRestaurants);
 	}
 	
 	render() {
-		let backgroundImage = (this.state.started)
-							? require('./backgroundImageBW.jpg')
-							: require('./backgroundImage.jpg');
 		return (
-				<Image source={backgroundImage} style={styles.container}>
-				<Text style={styles.text}> Program is doing : {this.state.state} </Text>
-					<MainArea restaurant={this.state.restaurant} programState={this.state.state}/>
-					<ActionButtonArea func1={this.chooseRestaurantInDowntownVancouver.bind(this)} />
-				</Image>
+				<View style={{ flex:1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF', }}>
+				<MainArea restaurant={this.state.restaurant} programState={this.state.state}/>
+				<ButtonArea 
+				func1={this.findWhereToEat.bind(this)}
+				func2={this.chooseRestaurantInVancouverDowntown.bind(this)}
+				/>
+				</View>
 			   );
 	}
 
@@ -84,8 +99,7 @@ class WhereToEat extends React.Component{
 		this.setState({state});
 	}
 
-	chooseRestaurantInDowntownVancouver() {
-		this.setState({started: true}),
+	chooseRestaurantInVancouverDowntown() {
 		this.setStatus('Choosing Restaurant for you in Downtown Vancouver');
 		this.setState({restaurant: _.sample(this.state.localRestaurants)});
 		this.setStatus();	
@@ -142,12 +156,48 @@ class WhereToEat extends React.Component{
 	}
 }
 
+class ButtonArea extends React.Component{
+
+	render() { 
+		return(
+				<View 
+				style={ styles.ButtonArea}	
+				>
+					<Button onPress={this.props.func1}> Tell me where to eat NOW! </Button>	
+					<Button onPress={this.props.func2}> I work near Vancouver Downtown</Button>	
+				</View>
+				)
+	}
+}
+
+class Button extends React.Component{
+
+	render() { 
+		return(
+				<View style={styles.button}>
+					<TouchableOpacity onPress={this.props.onPress}>
+						<Text style={styles.buttonText} numberOfLines={2}>
+						{this.props.children}
+						</Text>
+					</TouchableOpacity>
+				</View>
+				)
+	}
+
+}
+
 class MainArea extends React.Component{
 	render() {
 		console.log(this.props);
 		if (_.isNull(this.props.restaurant)){
 		return(
 			<View style={styles.MainArea}>
+				<Text>
+					Program is doing : {this.props.programState}
+				</Text>
+				<Text>
+					Click Button to Randomly select a restaurant {'\n'}
+				</Text>
 			</View>
 			)
 		} else {
@@ -172,38 +222,26 @@ class MainArea extends React.Component{
 //				/>
 		return (
 			<View style={styles.MainArea}>
-				<Text style={[styles.text,
-					{fontSize: 25,
-					fontWeight: 'bold',   
-					}]}> 
+				<Text>
+					Program is doing : {this.props.programState}
+				</Text>
+				<Text style={{textAlign: 'center',
+							fontWeight: 'bold',
+							fontSize: 18
+				}}> 
 					{this.props.restaurant.name}
 				</Text>
-				<Text style={[styles.text,{
-							fontSize:15}
-					]}> 
+				<Text style={{textAlign: 'center',
+							fontSize:15
+					
+					}}> 
 					{this.props.restaurant.vicinity}
 				</Text>
-				<Image source={this.props.restaurant.picUri} style={styles.MainAreaImage}/>
 			</View>
 			)
 		}
 	}
-}
 
-class ActionButtonArea extends React.Component {
-
-	render(func1) {
-		return(
-					<ActionButton buttonColor="rgba(231,76,60,1)">
-						<ActionButton.Item buttonColor='#9b59b6' 
-								title="I work in Downtown YVR" 
-								onPress={this.props.func1}>
-							<Text> </Text>
-						</ActionButton.Item>
-					</ActionButton>
-
-			  )	
-	}
 }
 
 AppRegistry.registerComponent('WhereToEat', function(){ return WhereToEat});
