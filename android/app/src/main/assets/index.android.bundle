@@ -858,113 +858,134 @@ throw new TypeError(
 
 var index=findIndex.call(this,predicate,context);
 return index === -1?undefined:this[index];}});}})();
-__d('WhereToEat/index.android.js',function(global, require, module, exports) {  'use strict';var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}
+__d('WhereToEat/index.android.js',function(global, require, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _reactNativeSwiper=require(
 
 
 
 
 
-var React=require('react-native/Libraries/react-native/react-native.js');
-var Dimensions=require('Dimensions');
-var _=require('underscore/underscore.js');var 
+'react-native-swiper/dist/index.js');var _reactNativeSwiper2=_interopRequireDefault(_reactNativeSwiper);var _reactNative=require(
+'react-native/Libraries/react-native/react-native.js');var _reactNative2=_interopRequireDefault(_reactNative);var _reactNativeActionButton=require(
+'react-native-action-button/ActionButton.js');var _reactNativeActionButton2=_interopRequireDefault(_reactNativeActionButton);var _underscore=require(
+'underscore/underscore.js');var _underscore2=_interopRequireDefault(_underscore);require(
+'WhereToEat/styleSheet.js');'use strict';
 
-AppRegistry=
-
-
-
-
-
-React.AppRegistry;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;var TouchableOpacity=React.TouchableOpacity;var MapView=React.MapView;
-
-this.windowDimension = Dimensions.get('window');
-var userCoords=null;
-var styles=StyleSheet.create({
-container:{
-flex:1,
-justifyContent:'center',
-backgroundColor:'#F5FCFF',
-borderWidth:1},
+console.log(styles);var 
 
 
-welcome:{
-fontSize:20,
-textAlign:'center',
-margin:10},
-
-instructions:{
-textAlign:'center',
-color:'#333333',
-marginBottom:5},
-
-buttonText:{
-backgroundColor:'#2DB2DB',
-fontFamily:'.HelveticaNeueInterface-MediumP4',
-fontSize:17,
-fontWeight:'bold',
-textAlign:'center',
-height:75},
-
-button:{
-flex:1},
-
-MainArea:{
-top:40,
-borderWidth:5,
-height:this.windowDimension.height - 100,
-width:this.windowDimension.width},
-
-mapStyle:{
-height:this.windowDimension.height - 200,
-width:this.windowDimension.width}});var 
+AppRegistry=_reactNative2.default.AppRegistry;var 
+StyleSheet=_reactNative2.default.StyleSheet;var 
+Text=_reactNative2.default.Text;var 
+View=_reactNative2.default.View;var 
+TouchableOpacity=_reactNative2.default.TouchableOpacity;var 
+MapView=_reactNative2.default.MapView;var 
+Image=_reactNative2.default.Image;
 
 
+var userCoords=null;var 
 
 WhereToEat=(function(_React$Component){_inherits(WhereToEat,_React$Component);
 function WhereToEat(){_classCallCheck(this,WhereToEat);
 _get(Object.getPrototypeOf(WhereToEat.prototype),'constructor',this).call(this);
-this.state = {restaurant:null};}_createClass(WhereToEat,[{key:'render',value:
+var localRestaurants=[
+{name:'Little Korean Resturant',vicinity:'on West Pender Street',
+picUri:require('WhereToEat/localFixture/01-littleKorean.png')},
+
+{name:'Big Korean Restaurant',vicinity:'Don\' Remember',
+picUri:require('WhereToEat/localFixture/noodleBox.jpg')},
+
+{name:'丼屋',vicinity:'on Symore?',
+picUri:require('WhereToEat/localFixture/03-donPlace.png')},
+
+{name:'little Japanese Resturant',vicinity:'near little korean resturant',
+picUri:require('WhereToEat/localFixture/04-littleJapanese.png')},
+
+{name:'Café 365',vicinity:'near our Beanworks',
+picUri:require('WhereToEat/localFixture/05-cafe335.png')},
+
+{name:'Noodle box',vicinity:'Beanworks Friday place',
+picUri:require('WhereToEat/localFixture/noodleBox.jpg')},
+
+{name:'shogun',vicinity:'Howe',
+picUri:require('WhereToEat/localFixture/noodleBox.jpg')},
+
+{name:'A & W',vicinity:'some where near Georgia Street',
+picUri:require('WhereToEat/localFixture/08-aw.jpeg')},
+
+{name:'VCC',vicinity:'Comdata VCC',
+picUri:require('WhereToEat/localFixture/09-vcc.jpeg')},
+
+{name:'Throw Coin to Decide',vicinity:'I am really tired of deciding where to eat for you guys, come on !',
+picUri:require('WhereToEat/localFixture/furstratedFace.png')}];
+
+
+this.state = {restaurant:null,
+localRestaurants:localRestaurants,
+state:'Hit + to see Menu',
+started:false};
+
+console.log(this.state.localRestaurants);}_createClass(WhereToEat,[{key:'render',value:
 
 
 function render(){
+var backgroundImage=this.state.started?
+require('WhereToEat/backgroundImageBW.jpg'):
+require('WhereToEat/backgroundImage.jpg');
 return (
-React.createElement(View,{style:{flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center',backgroundColor:'#F5FCFF'}},
-React.createElement(MainArea,{restaurant:this.state.restaurant}),
-React.createElement(ButtonArea,{func1:this.findWhereToEat.bind(this)})));}},{key:'findWhereToEat',value:
+_reactNative2.default.createElement(Image,{source:backgroundImage,style:styles.container},
+_reactNative2.default.createElement(Text,{style:styles.text},' Program is doing : ',this.state.state,' '),
+_reactNative2.default.createElement(MainArea,{restaurant:this.state.restaurant,programState:this.state.state}),
+_reactNative2.default.createElement(ActionButtonArea,{
+func1:this.chooseRestaurantInDowntownVancouver.bind(this),
+func2:this.findWhereToEat.bind(this)})));}},{key:'setStatus',value:
 
 
+
+
+
+function setStatus(){var state=arguments.length <= 0 || arguments[0] === undefined?'Nothing':arguments[0];
+this.setState({state:state});}},{key:'chooseRestaurantInDowntownVancouver',value:
+
+
+function chooseRestaurantInDowntownVancouver(){
+this.setState({started:true}),
+this.setStatus('Choosing Restaurant for you in Downtown Vancouver');
+this.setState({restaurant:_underscore2.default.sample(this.state.localRestaurants)});
+this.setStatus();}},{key:'findWhereToEat',value:
 
 
 function findWhereToEat(){
 console.log('clicked');
+this.setStatus('you just clicked a button');
 this.getGeolocation();}},{key:'getGeolocation',value:
 
 
 function getGeolocation(){return regeneratorRuntime.async(function getGeolocation$(context$2$0){var _this=this;while(1) switch(context$2$0.prev = context$2$0.next){case 0:
-console.log('getting geo location');
+this.setStatus('Getting GEO location ...');
 console.log(navigator.geolocation.getCurrentPosition);
-navigator.geolocation.getCurrentPosition(function(data){console.log(data);},function(error){console.log(error);});
 navigator.geolocation.getCurrentPosition(
-function(position){
+(function(position){
 userCoords = position.coords;
 console.log(userCoords);
 var queryparams={
 key:'AIzaSyDns4_P-1c83QPVlKMt0TViMdDJQkIT-2U',
 location:position.coords.latitude + ' , ' + position.coords.longitude,
-radius:3000,
+radius:1000,
 types:'food|restaurant|bar'};
 
 _this.numOfCalls = 1;
 _this.results = {};
-console.log('about to fetch data from google');
+_this.setStatus('About to fetch data from Alphbet(Google)');
 _this.fetchDataFromGoogle(queryparams);
-console.log("Finished");},
-
+_this.setStatus("Waiting for you to click again");}).
+bind(this),
 function(error){return console.log('Error' + error);},
-{enableHighAccuracy:false,timeout:20000,maximumAge:1000});case 4:case 'end':return context$2$0.stop();}},null,this);}},{key:'fetchDataFromGoogle',value:
+{enableHighAccuracy:false,timeout:500,maximumAge:500});case 3:case 'end':return context$2$0.stop();}},null,this);}},{key:'fetchDataFromGoogle',value:
 
 
 
 function fetchDataFromGoogle(queryParams){var 
+
 
 baseUrl,
 queryURI,
@@ -974,52 +995,23 @@ queryURI,
 response,
 pagetoken,
 result,
-key;return regeneratorRuntime.async(function fetchDataFromGoogle$(context$2$0){while(1) switch(context$2$0.prev = context$2$0.next){case 0:console.log('Fetching');baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';queryURI = baseUrl + Object.keys(queryParams).map(function(key){return encodeURIComponent(key) + '=' + encodeURIComponent(queryParams[key]);}).join('&');context$2$0.prev = 3;context$2$0.next = 6;return regeneratorRuntime.awrap(fetch(queryURI));case 6:response = context$2$0.sent;pagetoken = JSON.parse(response._bodyText).next_page_token;result = JSON.parse(response._bodyText).results;key = queryParams['key'];
+key;return regeneratorRuntime.async(function fetchDataFromGoogle$(context$2$0){while(1) switch(context$2$0.prev = context$2$0.next){case 0:navigator.geolocation.stopObserving();this.setStatus('Waiting for Google API ...');baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';queryURI = baseUrl + Object.keys(queryParams).map(function(key){return encodeURIComponent(key) + '=' + encodeURIComponent(queryParams[key]);}).join('&');context$2$0.prev = 4;context$2$0.next = 7;return regeneratorRuntime.awrap(fetch(queryURI));case 7:response = context$2$0.sent;pagetoken = JSON.parse(response._bodyText).next_page_token;result = JSON.parse(response._bodyText).results;key = queryParams['key'];
 console.log(result);
-this.setState({restaurant:_.sample(result)});context$2$0.next = 18;break;case 14:context$2$0.prev = 14;context$2$0.t0 = context$2$0['catch'](3);
+this.setStatus('Got Data');
+this.setState({restaurants:result,restaurant:_underscore2.default.sample(result)});context$2$0.next = 20;break;case 16:context$2$0.prev = 16;context$2$0.t0 = context$2$0['catch'](4);
 
 console.log('error');
-console.log(context$2$0.t0);case 18:case 'end':return context$2$0.stop();}},null,this,[[3,14]]);}}]);return WhereToEat;})(React.Component);var 
+console.log(context$2$0.t0);case 20:case 'end':return context$2$0.stop();}},null,this,[[4,16]]);}}]);return WhereToEat;})(_reactNative2.default.Component);var 
 
 
 
 
-ButtonArea=(function(_React$Component2){_inherits(ButtonArea,_React$Component2);function ButtonArea(){_classCallCheck(this,ButtonArea);_get(Object.getPrototypeOf(ButtonArea.prototype),'constructor',this).apply(this,arguments);}_createClass(ButtonArea,[{key:'render',value:
-
-function render(){
-return (
-React.createElement(View,{style:{flexDirection:"column"}},
-React.createElement(Button,{onPress:this.props.func1},' Tell me where to eat NOW! ')));}}]);return ButtonArea;})(React.Component);var 
-
-
-
-
-
-Button=(function(_React$Component3){_inherits(Button,_React$Component3);function Button(){_classCallCheck(this,Button);_get(Object.getPrototypeOf(Button.prototype),'constructor',this).apply(this,arguments);}_createClass(Button,[{key:'render',value:
-
-function render(){
-return (
-React.createElement(View,{style:styles.button},
-React.createElement(TouchableOpacity,{onPress:this.props.onPress},
-React.createElement(Text,{style:styles.buttonText},
-this.props.children))));}}]);return Button;})(React.Component);var 
-
-
-
-
-
-
-
-
-MainArea=(function(_React$Component4){_inherits(MainArea,_React$Component4);function MainArea(){_classCallCheck(this,MainArea);_get(Object.getPrototypeOf(MainArea.prototype),'constructor',this).apply(this,arguments);}_createClass(MainArea,[{key:'render',value:
+MainArea=(function(_React$Component2){_inherits(MainArea,_React$Component2);function MainArea(){_classCallCheck(this,MainArea);_get(Object.getPrototypeOf(MainArea.prototype),'constructor',this).apply(this,arguments);}_createClass(MainArea,[{key:'render',value:
 function render(){
 console.log(this.props);
-if(_.isNull(this.props.restaurant)){
+if(_underscore2.default.isNull(this.props.restaurant)){
 return (
-React.createElement(View,{style:styles.MainArea},
-React.createElement(Text,null,'Click Button to Randomly select a restaurant ',
-'\n')));}else 
-
+_reactNative2.default.createElement(View,{style:styles.MainArea}));}else 
 
 
 {
@@ -1043,31 +1035,548 @@ console.log(userCoords);
 
 
 return (
-React.createElement(View,{style:styles.MainArea},
-React.createElement(Text,{style:{textAlign:'center',
-fontWeight:'bold',
-fontSize:18}},
+_reactNative2.default.createElement(View,{style:styles.MainArea},
+_reactNative2.default.createElement(Text,{style:[styles.text,
+{fontSize:25,
+fontWeight:'bold'}]},
 
 this.props.restaurant.name),
 
-React.createElement(Text,{style:{textAlign:'center',
-contSize:15}},
+_reactNative2.default.createElement(Text,{style:[styles.text,{
+fontSize:15}]},
+
+this.props.restaurant.vicinity),
+
+_reactNative2.default.createElement(Image,{source:this.props.restaurant.picUri,style:styles.MainAreaImage})));}}}]);return MainArea;})(_reactNative2.default.Component);var 
 
 
-this.props.restaurant.vicinity)));}}},{key:'calcDistance',value:
 
 
 
 
+ActionButtonArea=(function(_React$Component3){_inherits(ActionButtonArea,_React$Component3);function ActionButtonArea(){_classCallCheck(this,ActionButtonArea);_get(Object.getPrototypeOf(ActionButtonArea.prototype),'constructor',this).apply(this,arguments);}_createClass(ActionButtonArea,[{key:'render',value:
+
+function render(func1){
+return (
+_reactNative2.default.createElement(_reactNativeActionButton2.default,{buttonColor:'rgba(231,76,60,1)'},
+_reactNative2.default.createElement(_reactNativeActionButton2.default.Item,{buttonColor:'#9b59b6',
+title:'I work in Downtown YVR',
+onPress:this.props.func1},
+_reactNative2.default.createElement(Text,null,' ')),
+
+_reactNative2.default.createElement(_reactNativeActionButton2.default.Item,{buttonColor:'#9b59b6',
+title:'Tell me where to eat',
+onPress:this.props.func2},
+_reactNative2.default.createElement(Text,null,' '))));}}]);return ActionButtonArea;})(_reactNative2.default.Component);
 
 
-function calcDistance(UserCoords,destinationCoords){}}]);return MainArea;})(React.Component);
 
 
 
 
 
 AppRegistry.registerComponent('WhereToEat',function(){return WhereToEat;});
+});
+__d('react-native-swiper/dist/index.js',function(global, require, module, exports) {  'use strict';
+
+var _interopRequireWildcard=function(obj){return obj && obj.__esModule?obj:{'default':obj};};
+
+var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};
+
+Object.defineProperty(exports,'__esModule',{
+value:true});
+
+
+
+
+
+
+
+
+var _React$StyleSheet$Text$View$ScrollView$TouchableOpacity=require('react-native/Libraries/react-native/react-native.js');
+
+var _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2=_interopRequireWildcard(_React$StyleSheet$Text$View$ScrollView$TouchableOpacity);
+
+
+
+
+
+
+
+var _TimerMixin=require('react-timer-mixin/TimerMixin.js');
+
+var _TimerMixin2=_interopRequireWildcard(_TimerMixin);
+
+var _Dimensions=require('Dimensions');
+
+var _Dimensions2=_interopRequireWildcard(_Dimensions);
+
+'use strict';
+var _Dimensions$get=_Dimensions2['default'].get('window');
+
+var width=_Dimensions$get.width;
+var height=_Dimensions$get.height;
+
+
+
+
+
+var styles=_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.StyleSheet.create({
+container:{
+backgroundColor:'transparent',
+position:'relative'},
+
+wrapper:{
+backgroundColor:'transparent'},
+
+slide:{
+backgroundColor:'transparent'},
+
+pagination_x:{
+position:'absolute',
+bottom:25,
+left:0,
+right:0,
+flexDirection:'row',
+flex:1,
+justifyContent:'center',
+alignItems:'center',
+backgroundColor:'transparent'},
+
+pagination_y:{
+position:'absolute',
+right:15,
+top:0,
+bottom:0,
+flexDirection:'column',
+flex:1,
+justifyContent:'center',
+alignItems:'center',
+backgroundColor:'transparent'},
+
+title:{
+height:30,
+justifyContent:'center',
+position:'absolute',
+paddingLeft:10,
+bottom:-30,
+left:0,
+flexWrap:'nowrap',
+width:250,
+backgroundColor:'transparent'},
+
+buttonWrapper:{
+backgroundColor:'transparent',
+flexDirection:'row',
+position:'absolute',
+top:0,
+left:0,
+flex:1,
+paddingHorizontal:10,
+paddingVertical:10,
+justifyContent:'space-between',
+alignItems:'center'},
+
+
+buttonText:{
+fontSize:50,
+color:'#007aff',
+fontFamily:'Arial'}});
+
+exports['default'] = _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createClass({
+displayName:'index',
+
+
+
+
+
+propTypes:{
+horizontal:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+children:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.node.isRequired,
+style:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View.propTypes.style,
+pagingEnabled:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+showsHorizontalScrollIndicator:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+showsVerticalScrollIndicator:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+bounces:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+scrollsToTop:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+removeClippedSubviews:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+automaticallyAdjustContentInsets:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+showsPagination:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+showsButtons:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+loop:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+autoplay:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+autoplayTimeout:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.number,
+autoplayDirection:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.bool,
+index:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.number,
+renderPagination:_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].PropTypes.func},
+
+mixins:[_TimerMixin2['default']],
+
+
+
+
+
+
+getDefaultProps:function getDefaultProps(){
+return {
+horizontal:true,
+pagingEnabled:true,
+showsHorizontalScrollIndicator:false,
+showsVerticalScrollIndicator:false,
+bounces:false,
+scrollsToTop:false,
+removeClippedSubviews:true,
+automaticallyAdjustContentInsets:false,
+showsPagination:true,
+showsButtons:false,
+loop:true,
+autoplay:false,
+autoplayTimeout:2.5,
+autoplayDirection:true,
+index:0};},
+
+
+
+
+
+
+getInitialState:function getInitialState(){
+var props=this.props;
+
+var initState={
+isScrolling:false,
+autoplayEnd:false};
+
+initState.total = props.children?props.children.length || 1:0;
+
+initState.index = initState.total > 1?Math.min(props.index,initState.total - 1):0;
+
+
+initState.dir = props.horizontal == false?'y':'x';
+initState.width = props.width || width;
+initState.height = props.height || height;
+initState.offset = {};
+
+if(initState.total > 1){
+var setup=props.loop?1:initState.index;
+initState.offset[initState.dir] = initState.dir == 'y'?initState.height * setup:initState.width * setup;}
+
+
+return initState;},
+
+
+
+
+
+
+autoplayTimer:null,
+
+componentWillMount:function componentWillMount(){
+this.props = this.injectState(this.props);},
+
+
+componentDidMount:function componentDidMount(){
+this.autoplay();},
+
+
+
+
+
+autoplay:function autoplay(){
+var _this=this;
+
+if(!this.props.autoplay || this.state.isScrolling || this.state.autoplayEnd){
+return;}
+clearTimeout(this.autoplayTimer);
+
+this.autoplayTimer = this.setTimeout(function(){
+if(!_this.props.loop && (_this.props.autoplayDirection?_this.state.index == _this.state.total - 1:_this.state.index == 0))return _this.setState({
+autoplayEnd:true});
+
+_this.scrollTo(_this.props.autoplayDirection?1:-1);},
+this.props.autoplayTimeout * 1000);},
+
+
+
+
+
+
+onScrollBegin:function onScrollBegin(e){
+var _this2=this;
+
+
+this.setState({
+isScrolling:true});
+
+
+this.setTimeout(function(){
+_this2.props.onScrollBeginDrag && _this2.props.onScrollBeginDrag(e,_this2.state,_this2);});},
+
+
+
+
+
+
+
+onScrollEnd:function onScrollEnd(e){
+var _this3=this;
+
+
+this.setState({
+isScrolling:false});
+
+
+this.updateIndex(e.nativeEvent.contentOffset,this.state.dir);
+
+
+
+this.setTimeout(function(){
+_this3.autoplay();
+
+
+_this3.props.onMomentumScrollEnd && _this3.props.onMomentumScrollEnd(e,_this3.state,_this3);});},
+
+
+
+
+
+
+
+
+updateIndex:function updateIndex(offset,dir){
+
+var state=this.state;
+var index=state.index;
+var diff=offset[dir] - state.offset[dir];
+var step=dir == 'x'?state.width:state.height;
+
+
+if(!diff){
+return;}
+
+
+index = index + diff / step;
+
+if(this.props.loop){
+if(index <= -1){
+index = state.total - 1;
+offset[dir] = step * state.total;}else 
+if(index >= state.total){
+index = 0;
+offset[dir] = step;}}
+
+
+
+this.setState({
+index:index,
+offset:offset});},
+
+
+
+
+
+
+scrollTo:function scrollTo(index){
+if(this.state.isScrolling){
+return;}
+var state=this.state;
+var diff=(this.props.loop?1:0) + index + this.state.index;
+var x=0;
+var y=0;
+if(state.dir == 'x')x = diff * state.width;
+if(state.dir == 'y')y = diff * state.height;
+this.refs.scrollView && this.refs.scrollView.scrollTo(y,x);
+
+
+this.setState({
+isScrolling:true,
+autoplayEnd:false});},
+
+
+
+
+
+
+renderPagination:function renderPagination(){
+
+
+if(this.state.total <= 1){
+return null;}
+var dots=[];
+for(var i=0;i < this.state.total;i++) {
+dots.push(i === this.state.index?this.props.activeDot || _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,{style:{
+backgroundColor:'#007aff',
+width:8,
+height:8,
+borderRadius:4,
+marginLeft:3,
+marginRight:3,
+marginTop:3,
+marginBottom:3}}):this.props.dot || _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,{style:{
+backgroundColor:'rgba(0,0,0,.2)',
+width:8,
+height:8,
+borderRadius:4,
+marginLeft:3,
+marginRight:3,
+marginTop:3,
+marginBottom:3}}));}
+
+
+return _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+{pointerEvents:'none',style:[styles['pagination_' + this.state.dir],this.props.paginationStyle]},
+dots);},
+
+
+
+renderTitle:function renderTitle(){
+var child=this.props.children[this.state.index];
+var title=child && child.props.title;
+return title?_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+{style:styles.title},
+this.props.children[this.state.index].props.title):
+null;},
+
+
+renderButtons:function renderButtons(){
+var _this4=this;
+
+var nextButton=this.props.nextButton || _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.Text,
+{style:[styles.buttonText,{color:!this.props.loop && this.state.index == this.state.total - 1?'rgba(0,0,0,0)':'#007aff'}]},
+'›');
+
+
+var prevButton=this.props.prevButton || _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.Text,
+{style:[styles.buttonText,{color:!this.props.loop && this.state.index == 0?'rgba(0,0,0,0)':'#007aff'}]},
+'‹');
+
+
+return _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+{pointerEvents:'box-none',style:[styles.buttonWrapper,{width:this.state.width,height:this.state.height},this.props.buttonWrapperStyle]},
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.TouchableOpacity,
+{onPress:function(){
+return !(!_this4.props.loop && _this4.state.index == 0) && _this4.scrollTo.call(_this4,-1);}},
+
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+null,
+prevButton)),
+
+
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.TouchableOpacity,
+{onPress:function(){
+return !(!_this4.props.loop && _this4.state.index == _this4.state.total - 1) && _this4.scrollTo.call(_this4,1);}},
+
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+null,
+nextButton)));},
+
+
+
+
+
+
+
+
+
+
+injectState:function injectState(props){
+var _this5=this;
+
+
+
+
+
+
+
+
+
+for(var prop in props) {
+
+if(typeof props[prop] === 'function' && prop !== 'onMomentumScrollEnd' && prop !== 'renderPagination' && prop !== 'onScrollBeginDrag'){
+(function(){
+var originResponder=props[prop];
+props[prop] = function(e){
+return originResponder(e,_this5.state,_this5);};})();}}
+
+
+
+
+
+return props;},
+
+
+
+
+
+
+render:function render(){
+var state=this.state;
+var props=this.props;
+var children=props.children;
+var index=state.index;
+var total=state.total;
+var loop=props.loop;
+var dir=state.dir;
+var key=0;
+
+var pages=[];
+var pageStyle=[{width:state.width,height:state.height},styles.slide];
+
+
+if(total > 1){
+
+
+pages = Object.keys(children);
+if(loop){
+pages.unshift(total - 1);
+pages.push(0);}
+
+
+pages = pages.map(function(page,i){
+return _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+{style:pageStyle,key:i},
+children[page]);});}else 
+
+
+pages = _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+{style:pageStyle},
+children);
+
+
+return _React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.View,
+{style:[styles.container,{
+width:state.width,
+height:state.height}]},
+
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity2['default'].createElement(
+_React$StyleSheet$Text$View$ScrollView$TouchableOpacity.ScrollView,
+_extends({ref:'scrollView'},
+props,{
+contentContainerStyle:[styles.wrapper,props.style],
+contentOffset:state.offset,
+onScrollBeginDrag:this.onScrollBegin,
+onMomentumScrollEnd:this.onScrollEnd}),
+pages),
+
+props.showsPagination && (props.renderPagination?this.props.renderPagination(state.index,state.total,this):this.renderPagination()),
+this.renderTitle(),
+this.props.showsButtons && this.renderButtons());}});
+
+
+
+module.exports = exports['default'];
 });
 __d('react-native/Libraries/react-native/react-native.js',function(global, require, module, exports) {  'use strict';
 
@@ -54612,6 +55121,425 @@ Object.keys(componentOrElement));}
 
 module.exports = findDOMNode;
 });
+__d('react-native-action-button/ActionButton.js',function(global, require, module, exports) {  'use strict';var _extends=Object.assign || function(target){for(var i=1;i < arguments.length;i++) {var source=arguments[i];for(var key in source) {if(Object.prototype.hasOwnProperty.call(source,key)){target[key] = source[key];}}}return target;};var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}
+
+var React=require('react-native/Libraries/react-native/react-native.js');var 
+
+Component=
+
+
+
+
+
+
+
+
+React.Component;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;var Animated=React.Animated;var Easing=React.Easing;var TouchableOpacity=React.TouchableOpacity;var PixelRatio=React.PixelRatio;var Dimensions=React.Dimensions;
+
+var sW=Dimensions.get('window').width,
+ActionButtonItem=require('react-native-action-button/ActionButtonItem.js');var 
+
+
+ActionButton=(function(_Component){_inherits(ActionButton,_Component);
+function ActionButton(props){_classCallCheck(this,ActionButton);
+_get(Object.getPrototypeOf(ActionButton.prototype),'constructor',this).call(this,props);
+this.state = {
+active:props.active || false,
+type:props.type || 'float',
+bgColor:props.bgColor || 'transparent',
+buttonColor:props.buttonColor || 'rgba(0,0,0,1)',
+buttonTextColor:props.buttonTextColor || 'rgba(255,255,255,1)',
+spacing:props.spacing || 20,
+btnOutRange:props.btnOutRange || props.buttonColor || 'rgba(0,0,0,1)',
+btnOutRangeTxt:props.btnOutRangeTxt || props.buttonTextColor || 'rgba(255,255,255,1)',
+outRangeScale:props.outRangeScale || 1};
+
+
+this.state.anim = this.props.active?new Animated.Value(1):new Animated.Value(0);
+
+if(!props.children)throw new Error("ActionButton must have at least 1 Child.");
+
+if(Array.isArray(props.children)){
+this.state.actionButtons = props.children;}else 
+{
+this.state.actionButtons = [props.children];}
+
+
+this.setPositionAndSizeByType();}_createClass(ActionButton,[{key:'setPositionAndSizeByType',value:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function setPositionAndSizeByType(){
+var position=undefined,offsetX=undefined,offsetY=undefined,size=undefined;
+
+if(this.state.type == 'tab'){
+position = 'center',
+offsetX = 10,
+offsetY = 4,
+size = 42;}else 
+{
+position = 'right',
+offsetX = 30,
+offsetY = 30,
+size = 56;}
+
+
+this.state.position = this.props.position || position;
+this.state.offsetX = this.props.offsetX || offsetX;
+this.state.offsetY = this.props.offsetY || offsetY;
+this.state.size = this.props.size || size;}},{key:'getContainerStyles',value:
+
+
+
+
+
+
+
+function getContainerStyles(){
+if(this.state.active)return styles.overlay;
+return [styles.actionBarPos,this.getButtonSize(),this.getOffsetXY()];}},{key:'getActionButtonStyles',value:
+
+
+function getActionButtonStyles(){
+if(this.state.active)return [styles.actionBarItem,styles.actionBarPos,this.getButtonSize(),this.getOffsetXY()];
+return [styles.actionBarItem,this.getButtonSize()];}},{key:'getButtonSize',value:
+
+
+function getButtonSize(){
+return {
+width:this.state.size,
+height:this.state.size};}},{key:'getOffsetXY',value:
+
+
+
+function getOffsetXY(){
+if(this.state.position == 'center')return {left:sW / 2 - this.state.size / 2,bottom:this.state.offsetY};
+if(this.state.position == 'left')return {left:this.state.offsetX,bottom:this.state.offsetY};
+return {right:this.state.offsetX,bottom:this.state.offsetY};}},{key:'getActionsStyle',value:
+
+
+function getActionsStyle(){
+var alignItems='center';
+if(this.state.position == 'left')alignItems = 'flex-start';
+if(this.state.position == 'right')alignItems = 'flex-end';
+
+return [
+styles.actionsVertical,
+{
+paddingHorizontal:this.state.offsetX,
+paddingBottom:this.state.size + this.state.offsetY,
+backgroundColor:this.state.bgColor,
+alignItems:alignItems}];}},{key:'render',value:
+
+
+
+
+
+
+
+
+
+function render(){
+return (
+React.createElement(View,{style:this.getContainerStyles()},
+this._renderActions(),
+this._renderButton()));}},{key:'_renderButton',value:
+
+
+
+
+function _renderButton(){
+var btnSize=this.state.size;
+return (
+React.createElement(View,{style:this.getActionButtonStyles()},
+React.createElement(TouchableOpacity,{activeOpacity:0.8,onPress:this.animateButton.bind(this)},
+React.createElement(Animated.View,{
+style:[styles.btn,{
+width:btnSize,
+height:btnSize,
+borderRadius:btnSize / 2,
+backgroundColor:this.state.anim.interpolate({
+inputRange:[0,1],
+outputRange:[this.state.buttonColor,this.state.btnOutRange]}),
+
+transform:[
+{
+scale:this.state.anim.interpolate({
+inputRange:[0,1],
+outputRange:[1,this.state.outRangeScale]})},
+
+
+{
+rotate:this.state.anim.interpolate({
+inputRange:[0,1],
+outputRange:['0deg','135deg']})}]}]},
+
+
+
+
+React.createElement(Animated.Text,{style:[styles.btnText,{
+color:this.state.anim.interpolate({
+inputRange:[0,1],
+outputRange:[this.state.buttonTextColor,this.state.btnOutRangeTxt]})}]},'+')))));}},{key:'_renderActions',value:
+
+
+
+
+
+
+
+
+
+
+function _renderActions(){var _this=this;
+if(!this.state.active)return;
+
+return (
+React.createElement(Animated.View,{style:[styles.overlay,{opacity:this.state.anim}]},
+React.createElement(TouchableOpacity,{activeOpacity:1,onPress:this.reset.bind(this),
+style:this.getActionsStyle()},
+this.state.actionButtons.map(function(ActionButton,iter){
+return React.createElement(ActionButtonItem,_extends({
+key:iter,
+position:_this.state.position,
+spacing:_this.state.spacing,
+anim:_this.state.anim,
+size:_this.state.size,
+btnColor:_this.state.btnOutRange},
+ActionButton.props,{
+onPress:function(){
+setTimeout(function(){
+_this.reset();},
+400);
+ActionButton.props.onPress();}}));}))));}},{key:'animateButton',value:
+
+
+
+
+
+
+
+
+
+
+
+
+function animateButton(){
+if(!this.state.active){
+Animated.spring(
+this.state.anim,
+{
+toValue:1,
+duration:350}).
+
+start();
+
+this.setState({active:true});}else 
+{
+this.reset();}}},{key:'reset',value:
+
+
+
+function reset(){var _this2=this;
+Animated.spring(
+this.state.anim,
+{
+toValue:0,
+duration:450}).
+
+start();
+
+setTimeout(function(){
+_this2.setState({active:false});},
+450);}}]);return ActionButton;})(Component);
+
+
+
+
+var styles=StyleSheet.create({
+overlay:{
+position:'absolute',
+bottom:0,
+left:0,
+right:0,
+top:0,
+backgroundColor:'transparent'},
+
+actionBarPos:{
+backgroundColor:'transparent',
+position:'absolute'},
+
+actionBarItem:{
+alignItems:'center',
+justifyContent:'center'},
+
+btn:{
+justifyContent:'center',
+alignItems:'center',
+shadowOpacity:0.3,
+shadowOffset:{
+width:0,height:1},
+
+shadowColor:'#444',
+shadowRadius:1},
+
+btnText:{
+marginTop:-4,
+fontSize:24,
+backgroundColor:'transparent',
+position:'relative'},
+
+actionsVertical:{
+flex:1,
+justifyContent:'flex-end',
+flexDirection:'column'}});
+
+
+
+ActionButton.Item = ActionButtonItem;
+
+module.exports = ActionButton;
+});
+__d('react-native-action-button/ActionButtonItem.js',function(global, require, module, exports) {  'use strict';var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}
+
+var React=require('react-native/Libraries/react-native/react-native.js');var 
+
+Component=
+
+
+
+
+
+
+React.Component;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;var Animated=React.Animated;var TouchableOpacity=React.TouchableOpacity;var Dimensions=React.Dimensions;var _Dimensions$get=
+
+
+
+Dimensions.get('window');var width=_Dimensions$get.width;
+
+var actionBtnWidth=0;var 
+
+ActionButtonItem=(function(_Component){_inherits(ActionButtonItem,_Component);
+function ActionButtonItem(props){_classCallCheck(this,ActionButtonItem);
+_get(Object.getPrototypeOf(ActionButtonItem.prototype),'constructor',this).call(this,props);
+this.state = {
+spaceBetween:15,
+offsetTop:props.size > 42?14:10,
+alignItems:this.props.position == 'left'?'flex-start':'flex-end'};
+
+
+if(!props.children || Array.isArray(props.children))throw new Error("ActionButtonItem must have a Child component.");
+
+if(this.props.size > 0)actionBtnWidth = this.props.size;}_createClass(ActionButtonItem,[{key:'render',value:
+
+
+function render(){
+return (
+React.createElement(Animated.View,{style:
+[
+styles.actionButtonWrap,
+{
+alignItems:this.state.alignItems,
+marginBottom:this.props.spacing,
+opacity:this.props.anim,
+transform:[
+{
+translateY:this.props.anim.interpolate({
+inputRange:[0,1],
+outputRange:[40,0]})}]}]},
+
+
+
+
+
+
+React.createElement(TouchableOpacity,{style:{flex:1},onPress:this.props.onPress},
+React.createElement(View,{style:[styles.actionButton,this.props.style,
+{
+width:actionBtnWidth,
+height:actionBtnWidth,
+borderRadius:actionBtnWidth / 2,
+backgroundColor:this.props.buttonColor || this.props.btnColor}]},
+
+
+this.props.children)),
+
+
+React.createElement(View,{style:this.getTextStyles()},
+React.createElement(Text,{style:styles.actionText},this.props.title))));}},{key:'getTextStyles',value:
+
+
+
+
+
+function getTextStyles(){
+var positionStyles={
+right:actionBtnWidth + this.state.spaceBetween,
+top:this.state.offsetTop};
+
+
+if(this.props.position == 'left')positionStyles = {
+left:actionBtnWidth + this.state.spaceBetween,
+top:this.state.offsetTop};
+
+
+return [styles.actionTextView,positionStyles];}}]);return ActionButtonItem;})(Component);
+
+
+
+var styles=StyleSheet.create({
+actionButtonWrap:{
+width:width},
+
+actionButton:{
+justifyContent:'center',
+alignItems:'center',
+flexDirection:'row',
+paddingTop:2,
+shadowOpacity:0.3,
+shadowOffset:{
+width:0,height:1},
+
+shadowColor:'#444',
+shadowRadius:1},
+
+actionTextView:{
+position:'absolute',
+backgroundColor:'white',
+paddingVertical:4,
+paddingHorizontal:10,
+borderRadius:3,
+shadowOpacity:0.3,
+shadowOffset:{
+width:0,height:1},
+
+shadowColor:'#444',
+shadowRadius:1},
+
+actionText:{
+flex:1,
+color:'#444',
+fontSize:14}});
+
+
+
+module.exports = ActionButtonItem;
+});
 __d('underscore/underscore.js',function(global, require, module, exports) {  (
 
 
@@ -56161,6 +57089,65 @@ return _;});}}).
 
 call(this);
 });
+__d('WhereToEat/styleSheet.js',function(global, require, module, exports) {  var _reactNative=require(
+'react-native/Libraries/react-native/react-native.js');"use strict";
+var Dimensions=require('Dimensions');
+this.windowDimension = Dimensions.get('window');
+
+console.log(this.windowDimension);
+
+styles = _reactNative.StyleSheet.create({
+container:{
+flex:1,
+justifyContent:'center',
+width:this.windowDimension.width,
+height:this.windowDimension.height,
+alignSelf:'stretch'},
+
+mapStyle:{
+height:this.windowDimension.height - 200,
+width:this.windowDimension.width},
+
+actionButtonIcon:{
+fontSize:20,
+height:22,
+color:'white'},
+
+MainArea:{
+top:20,
+height:this.windowDimension.height - 50,
+width:this.windowDimension.width},
+
+MainAreaImage:{
+width:this.windowDimension.width * 0.9,
+height:this.windowDimension.height - 200,
+alignSelf:'center'},
+
+text:{
+textAlign:'center',
+color:'000000',
+opacity:100}});
+});
+__d('WhereToEat/localFixture/01-littleKorean.png',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":693,"height":616,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/01-littleKorean.png"],"hash":"538529f289bb307630e1fa0bf1379c30","name":"01-littleKorean","type":"png"});
+});
+__d('WhereToEat/localFixture/noodleBox.jpg',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":3200,"height":2368,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/noodleBox.jpg"],"hash":"ea9970859ddc2356d980787f67c54c1c","name":"noodleBox","type":"jpg"});
+});
+__d('WhereToEat/localFixture/03-donPlace.png',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":620,"height":629,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/03-donPlace.png"],"hash":"0a5d0d4d58e8c9c3db8eb3e9545888c9","name":"03-donPlace","type":"png"});
+});
+__d('WhereToEat/localFixture/04-littleJapanese.png',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":720,"height":694,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/04-littleJapanese.png"],"hash":"f3d241db966b9fd6423ac7f36a07ddad","name":"04-littleJapanese","type":"png"});
+});
+__d('WhereToEat/localFixture/05-cafe335.png',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":445,"height":487,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/05-cafe335.png"],"hash":"1c458f359ed2218001931bd78ed34b58","name":"05-cafe335","type":"png"});
+});
+__d('WhereToEat/localFixture/08-aw.jpeg',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":251,"height":201,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/08-aw.jpeg"],"hash":"b14960805f43056933a7dbf19cce396c","name":"08-aw","type":"jpeg"});
+});
+__d('WhereToEat/localFixture/09-vcc.jpeg',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":225,"height":225,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/09-vcc.jpeg"],"hash":"6ec9fcb4108bec3973cdd6f100e9b127","name":"09-vcc","type":"jpeg"});
+});
+__d('WhereToEat/localFixture/furstratedFace.png',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture","httpServerLocation":"/assets/localFixture","width":256,"height":256,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/localFixture/furstratedFace.png"],"hash":"22ffea13ebdc3202d6b2ff9dfac8642c","name":"furstratedFace","type":"png"});
+});
+__d('WhereToEat/backgroundImageBW.jpg',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat","httpServerLocation":"/assets","width":946,"height":1195,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/backgroundImageBW.jpg"],"hash":"d59d82e9015a04642f4b2e09277b7042","name":"backgroundImageBW","type":"jpg"});
+});
+__d('WhereToEat/backgroundImage.jpg',function(global, require, module, exports) {  module.exports = require("AssetRegistry").registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/leimengda/projects/React/React_Native_Projects/WhereToEat","httpServerLocation":"/assets","width":946,"height":1195,"scales":[1],"files":["/Users/leimengda/projects/React/React_Native_Projects/WhereToEat/backgroundImage.jpg"],"hash":"531eaf9cb4b1819f278301ff09ef5f9b","name":"backgroundImage","type":"jpg"});
+});
 ;require("InitializeJavaScriptAppEngine");
 ;require("WhereToEat/index.android.js");
-__SSTOKENSTRING = "@generated SignedSource<<c5fe0bc7c0b659cd0a06f6a705c7ea71>>";
+__SSTOKENSTRING = "@generated SignedSource<<d3e88a46fe72d953c90831af33e12176>>";

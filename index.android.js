@@ -75,7 +75,10 @@ class WhereToEat extends React.Component{
 				<Image source={backgroundImage} style={styles.container}>
 				<Text style={styles.text}> Program is doing : {this.state.state} </Text>
 					<MainArea restaurant={this.state.restaurant} programState={this.state.state}/>
-					<ActionButtonArea func1={this.chooseRestaurantInDowntownVancouver.bind(this)} />
+					<ActionButtonArea 
+						func1={this.chooseRestaurantInDowntownVancouver.bind(this)} 
+						func2={this.findWhereToEat.bind(this)}
+						/>
 				</Image>
 			   );
 	}
@@ -107,7 +110,7 @@ class WhereToEat extends React.Component{
 					var queryparams = {
 						key: 'AIzaSyDns4_P-1c83QPVlKMt0TViMdDJQkIT-2U',
 						location: `${position.coords.latitude} , ${position.coords.longitude}`,
-						radius: 3000,
+						radius: 1000,
 						types: 'food|restaurant|bar'
 					};
 					this.numOfCalls = 1;
@@ -117,11 +120,12 @@ class WhereToEat extends React.Component{
 					this.setStatus("Waiting for you to click again");
 				}.bind(this),
 				(error) => console.log('Error' + error),
-				{enableHighAccuracy: false, timeout: 2000, maximumAge: 1000}
+				{enableHighAccuracy: false, timeout: 500, maximumAge: 500}
 				);
 	}
 
 	async fetchDataFromGoogle(queryParams) {
+		navigator.geolocation.stopObserving();
 		this.setStatus('Waiting for Google API ...');
 		const baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 		var queryURI = baseUrl + Object.keys(queryParams).map((key)=>{
@@ -198,6 +202,11 @@ class ActionButtonArea extends React.Component {
 						<ActionButton.Item buttonColor='#9b59b6' 
 								title="I work in Downtown YVR" 
 								onPress={this.props.func1}>
+							<Text> </Text>
+						</ActionButton.Item>
+						<ActionButton.Item buttonColor='#9b59b6' 
+								title="Tell me where to eat" 
+								onPress={this.props.func2}>
 							<Text> </Text>
 						</ActionButton.Item>
 					</ActionButton>
