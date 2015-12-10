@@ -1,32 +1,32 @@
 [
 	{"name": "Little Korean Resturant", "vicinity": "on West Pender Street"
-		,"picUri": "./localFixture/01-littleKorean.png")
+		,"picUri": "./localFixture/01-littleKorean.png"
 	},
 	{"name": "Big Korean Restaurant", "vicinity": "Don\" Remember"
-		,"picUri": "./localFixture/noodleBox.jpg")
+		,"picUri": "./localFixture/noodleBox.jpg"
 	},
 	{"name": "丼屋", "vicinity": "on Symore?"
-		,"picUri": "./localFixture/03-donPlace.png")
+		,"picUri": "./localFixture/03-donPlace.png"
 	},
 	{"name": "little Japanese Resturant", "vicinity": "near little korean resturant"
-		,"picUri": "./localFixture/04-littleJapanese.png")
+		,"picUri": "./localFixture/04-littleJapanese.png"
 	},
 	{"name": "Café 365", "vicinity": "near our Beanworks"
-		,"picUri": "./localFixture/05-cafe335.png")
+		,"picUri": "./localFixture/05-cafe335.png"
 	},
 	{"name": "Noodle box", "vicinity": "Beanworks Friday place"
-		,"picUri": "./localFixture/noodleBox.jpg")
+		,"picUri": "./localFixture/noodleBox.jpg"
 	},
 	{"name": "shogun", "vicinity": "Howe"
-		,"picUri": "./localFixture/noodleBox.jpg")
+		,"picUri": "./localFixture/noodleBox.jpg"
 	},
 	{"name": "A & W", "vicinity": "some where near Georgia Street"
-		,"picUri": "./localFixture/08-aw.jpeg")
+		,"picUri": "./localFixture/08-aw.jpeg"
 	},
 	{"name": "VCC","vicinity": "Comdata VCC"
-		,"picUri": "./localFixture/09-vcc.jpeg")
+		,"picUri": "./localFixture/09-vcc.jpeg"
 	},
 	{"name": "Throw Coin to Decide", "vicinity": "I am really tired of deciding where to eat for you guys, come on !"
-		,"picUri": "./localFixture/furstratedFace.png")
+		,"picUri": "./localFixture/furstratedFace.png"
 	}
 ]
