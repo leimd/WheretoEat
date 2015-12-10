@@ -1,0 +1,32 @@
+{
+	{name: 'Little Korean Resturant', vicinity: 'on West Pender Street'
+		,picUri: require('./localFixture/01-littleKorean.png')
+	},
+	{name: 'Big Korean Restaurant', vicinity: 'Don\' Remember'
+		,picUri: require('./localFixture/noodleBox.jpg')
+	},
+	{name: '丼屋', vicinity: 'on Symore?'
+		,picUri: require('./localFixture/03-donPlace.png')
+	},
+	{name: 'little Japanese Resturant', vicinity: 'near little korean resturant'
+		,picUri: require('./localFixture/04-littleJapanese.png')
+	},
+	{name: 'Café 365', vicinity: 'near our Beanworks'
+		,picUri: require('./localFixture/05-cafe335.png')
+	},
+	{name: 'Noodle box', vicinity: 'Beanworks Friday place'
+		,picUri: require('./localFixture/noodleBox.jpg')
+	},
+	{name: 'shogun', vicinity: 'Howe'
+		,picUri: require('./localFixture/noodleBox.jpg')
+	},
+	{name: 'A & W', vicinity: 'some where near Georgia Street'
+		,picUri: require('./localFixture/08-aw.jpeg')
+	},
+	{name: 'VCC', vicinity: 'Comdata VCC'
+		,picUri: require('./localFixture/09-vcc.jpeg')
+	},
+	{name: 'Throw Coin to Decide', vicinity: 'I am really tired of deciding where to eat for you guys, come on !'
+		,picUri: require('./localFixture/furstratedFace.png')
+	}
+}

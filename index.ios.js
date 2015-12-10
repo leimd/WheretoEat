@@ -4,9 +4,14 @@
  */
 'use strict';
 
-var React = require('react-native');
-var Dimensions = require('Dimensions');
-var _ = require('underscore');
+import Swiper from 'react-native-swiper';
+import React from 'react-native';
+import ActionButton from 'react-native-action-button';
+import _ from 'underscore';
+import './styleSheet';
+
+console.log(styles);
+
 var {
 	AppRegistry,
 	StyleSheet,
@@ -14,95 +19,84 @@ var {
 	View,
 	TouchableOpacity, 
 	MapView,
+	Image,
 } = React;
 
-this.windowDimension = Dimensions.get('window');	
 var userCoords = null;
-var styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		backgroundColor: '#F5FCFF',
-		borderWidth: 1,
-
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
-	buttonText:{
-		backgroundColor: '#2DB2DB',
-		fontFamily: '.HelveticaNeueInterface-MediumP4',
-		fontSize: 17,
-		fontWeight: 'bold',
-		textAlign: 'center',
-		height:75,
-	},
-	button:{
-		shadowOpacity: 50,
-		shadowOffset: {width:3, height:3},
-		flex:1,
-	},
-	MainArea:{
-		top:40,
-		borderWidth:5,
-		height:this.windowDimension.height - 100,
-		width: this.windowDimension.width,
-	},
-	mapStyle:{
-		height: this.windowDimension.height - 200,
-		width: this.windowDimension.width,
-	}
-});
 
 class WhereToEat extends React.Component{
 	constructor() {
 		super();
-		this.state = {restaurant: null};	
+		let localRestaurants = [
+		];
+		this.state = {restaurant: null,
+		   	localRestaurants, 
+			state: 'Hit + to see Menu',
+			started: false,
+			};	
+		console.log(this.state.localRestaurants);
 	}
 	
 	render() {
+		let backgroundImage = (this.state.started)
+							? require('./backgroundImageBW.jpg')
+							: require('./backgroundImage.jpg');
 		return (
-				<View style={{ flex:1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF', }}>
-				<MainArea restaurant={this.state.restaurant}/>
-				<ButtonArea func1={this.findWhereToEat.bind(this)}/>
-				</View>
+				<Image source={backgroundImage} style={styles.container}>
+				<Text style={styles.text}> Program is doing : {this.state.state} </Text>
+					<MainArea restaurant={this.state.restaurant} programState={this.state.state}/>
+					<ActionButtonArea 
+						func1={this.chooseRestaurantInDowntownVancouver.bind(this)} 
+						func2={this.findWhereToEat.bind(this)}
+						/>
+				</Image>
 			   );
 	}
 
+	setStatus (state='Nothing') {
+		this.setState({state});
+	}
+
+	chooseRestaurantInDowntownVancouver() {
+		this.setState({started: true}),
+		this.setStatus('Choosing Restaurant for you in Downtown Vancouver');
+		this.setState({restaurant: _.sample(this.state.localRestaurants)});
+		this.setStatus();	
+	}
+
 	findWhereToEat() {
+		console.log('clicked');
+		this.setStatus('you just clicked a button');
 		this.getGeolocation();
 	}
 
 	async getGeolocation() {
-		let currentPosition = navigator.geolocation.getCurrentPosition(
+		this.setStatus('Getting GEO location ...');
+		console.log(navigator.geolocation.getCurrentPosition);
+		navigator.geolocation.getCurrentPosition(
 				(position) => {
 					userCoords = position.coords;
 					console.log(userCoords);
 					var queryparams = {
-						key: 'AIzaSyBJ05I2ft3kJoOqdl8CgL9RmcU1Jj5jgmc',
+						key: 'AIzaSyDns4_P-1c83QPVlKMt0TViMdDJQkIT-2U',
 						location: `${position.coords.latitude} , ${position.coords.longitude}`,
-						radius: 3000,
+						radius: 1000,
 						types: 'food|restaurant|bar'
 					};
 					this.numOfCalls = 1;
 					this.results = {};
+					this.setStatus('About to fetch data from Alphbet(Google)');
 					this.fetchDataFromGoogle(queryparams);
-					console.log("Finished");
-				},
+					this.setStatus("Waiting for you to click again");
+				}.bind(this),
 				(error) => console.log('Error' + error),
-				{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+				{enableHighAccuracy: false, timeout: 500, maximumAge: 500}
 				);
 	}
 
 	async fetchDataFromGoogle(queryParams) {
-		console.log('Fetching');
+		navigator.geolocation.stopObserving();
+		this.setStatus('Waiting for Google API ...');
 		const baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 		var queryURI = baseUrl + Object.keys(queryParams).map((key)=>{
 						return encodeURIComponent(key) + '=' + encodeURIComponent(queryParams[key]);
@@ -112,39 +106,14 @@ class WhereToEat extends React.Component{
 			let pagetoken = JSON.parse(response._bodyText).next_page_token;
 			let result = JSON.parse(response._bodyText).results;
 			let key = queryParams['key'];
-			this.setState({restaurant: _.sample(result)});
+			console.log(result);
+			this.setStatus('Got Data');
+			this.setState({restaurants: result, restaurant: _.sample(result)});
 		} catch(error) {
 			console.log('error');
 			console.log(error);
 		}
 	}
-}
-
-class ButtonArea extends React.Component{
-
-	render() { 
-		return(
-				<View style={{ flexDirection: "column",}}>
-					<Button onPress={this.props.func1}> Tell me where to eat NOW! </Button>	
-				</View>
-				)
-	}
-}
-
-class Button extends React.Component{
-
-	render() { 
-		return(
-				<View style={styles.button}>
-					<TouchableOpacity onPress={this.props.onPress}>
-						<Text style={styles.buttonText}>
-						{this.props.children}
-						</Text>
-					</TouchableOpacity>
-				</View>
-				)
-	}
-
 }
 
 class MainArea extends React.Component{
@@ -153,54 +122,67 @@ class MainArea extends React.Component{
 		if (_.isNull(this.props.restaurant)){
 		return(
 			<View style={styles.MainArea}>
-				<Text>
-					Click Button to Randomly select a restaurant {'\n'}
-				</Text>
 			</View>
 			)
 		} else {
 			console.log(this.props.restaurant);
 			console.log(userCoords);
+//				<MapView
+//				annotations={[{
+//					latitude: this.props.restaurant.geometry.location.lat,
+//					longitude: this.props.restaurant.geometry.location.lng,
+//					animatiDrop: true,
+//					title: this.props.restaurant.name,
+//					subtitle: this.props.vicinity
+//					}]}
+//				mapType='standard'
+//				style={styles.mapStyle}
+//				region={{latitude: userCoords.latitude,
+//						longitude: userCoords.longitude,
+//						latitudeDelta: 0.1,
+//						longitudeDelta: 0.1}}
+//				showsUserLocation={true}
+//				minDelta={0.05}
+//				/>
 		return (
 			<View style={styles.MainArea}>
-				<MapView
-				annotations={[{
-					latitude: this.props.restaurant.geometry.location.lat,
-					longitude: this.props.restaurant.geometry.location.lng,
-					animatiDrop: true,
-					title: this.props.restaurant.name,
-					subtitle: this.props.vicinity
-					}]}
-				mapType='standard'
-				style={styles.mapStyle}
-				region={{latitude: userCoords.latitude,
-						longitude: userCoords.longitude,
-						latitudeDelta: 0.1,
-						longitudeDelta: 0.1}}
-				showsUserLocation={true}
-				minDelta={0.05}
-				/>
-				<Text style={{textAlign: 'center',
-							fontWeight: 'bold',
-							fontSize: 18
-				}}> 
+				<Text style={[styles.text,
+					{fontSize: 25,
+					fontWeight: 'bold',   
+					}]}> 
 					{this.props.restaurant.name}
 				</Text>
-				<Text style={{textAlign: 'center',
-							contSize:15
-					
-					}}> 
+				<Text style={[styles.text,{
+							fontSize:15}
+					]}> 
 					{this.props.restaurant.vicinity}
 				</Text>
+				<Image source={this.props.restaurant.picUri} style={styles.MainAreaImage}/>
 			</View>
 			)
 		}
 	}
+}
 
-	calcDistance(UserCoords, destinationCoords) {
-	
+class ActionButtonArea extends React.Component {
+
+	render(func1) {
+		return(
+					<ActionButton buttonColor="rgba(231,76,60,1)">
+						<ActionButton.Item buttonColor='#9b59b6' 
+								title="I work in Downtown YVR" 
+								onPress={this.props.func1}>
+							<Text> </Text>
+						</ActionButton.Item>
+						<ActionButton.Item buttonColor='#9b59b6' 
+								title="Tell me where to eat" 
+								onPress={this.props.func2}>
+							<Text> </Text>
+						</ActionButton.Item>
+					</ActionButton>
+
+			  )	
 	}
-
 }
 
 AppRegistry.registerComponent('WhereToEat', function(){ return WhereToEat});
